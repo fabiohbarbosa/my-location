@@ -1,6 +1,6 @@
 require 'yaml'
 
-settings = YAML.load_file 'token.yml'
+settings = YAML.load_file 'vagrant.yml'
 
 Vagrant.configure('2') do |config|
   # Droplet name in DigitalOcean
