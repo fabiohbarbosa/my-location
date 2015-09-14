@@ -3,9 +3,11 @@ require 'yaml'
 settings = YAML.load_file 'vagrant.yml'
 
 Vagrant.configure('2') do |config|
-  # Droplet name in DigitalOcean
+  # droplet name in DigitalOcean
   config.vm.define "my-location" do |centos7|
   end
+
+  config.vm.synced_folder "./", "/vagrant"
 
   config.vm.provision "shell", inline: "rpm -Uvh http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm --force"
   config.vm.provision "shell", inline: "yum -y install puppet"
