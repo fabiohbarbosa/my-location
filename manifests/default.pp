@@ -21,6 +21,13 @@ class {'::mongodb::server':
   verbose => true
 }
 
+class system-update {
+  $sysPackages = [ "git" ]
+  package { $sysPackages:
+    ensure => "installed"
+  }
+}
+
 # Include modules
 include stdlib
 include wget
@@ -28,3 +35,4 @@ include nodejs
 include node_modules
 
 include ::mongodb::server
+include system-update
