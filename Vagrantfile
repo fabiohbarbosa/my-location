@@ -3,6 +3,9 @@ Vagrant.configure('2') do |config|
   config.vm.define "my-location" do |centos7|
   end
 
+  config.vm.provision "shell", inline: "rpm -Uvh http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm --force"
+  config.vm.provision "shell", inline: "yum -y install puppet"
+
   config.vm.provider :digital_ocean do |provider, override|
     override.ssh.private_key_path = '~/.ssh/id_rsa'
     override.vm.box = 'digital_ocean'
