@@ -1,3 +1,7 @@
+require 'yaml'
+
+settings = YAML.load_file 'token.yml'
+
 Vagrant.configure('2') do |config|
   # Droplet name in DigitalOcean
   config.vm.define "my-location" do |centos7|
@@ -11,7 +15,7 @@ Vagrant.configure('2') do |config|
     override.vm.box = 'digital_ocean'
     override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
 
-    provider.token = 'API_TOKEN_HERE'
+    provider.token = settings['digital_ocean']['api_token']
     provider.image = 'centos-7-0-x64'
     provider.region = 'nyc2'
     provider.size = '512mb'
